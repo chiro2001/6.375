@@ -13,6 +13,9 @@ link: compile
 	bsc -e mkTestDriver -sim -o ./out -simdir $(build_dir) -bdir $(build_dir) -info-dir $(build_dir) $(bscflags)
 
 simulation: link
+	ln -sf ../data/mitrib_short.pcm in.pcm
+	./out
+	cmp out.pcm ../data/mitrib_short_filtered.pcm
 
 verilog: $(src)
 	mkdir -p bscdir
